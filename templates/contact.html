@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Me</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* Animated gradient background */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #00c6ff, #0072ff, #00ff6a, #00c3ff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* Contact container */
+  .contact-container {
+    max-width: 900px;
+    width: 90%;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    animation: fadeSlide 1s ease forwards;
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  @keyframes fadeSlide {
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  header nav {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-bottom: 25px;
+  }
+
+  header nav a {
+    color: #0077b5;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  header nav a:hover {
+    color: #ff4c4c;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #0077b5;
+    font-size: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: formFade 1.2s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes formFade {
+    to {opacity: 1;}
+  }
+
+  input, textarea {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  input:focus, textarea:focus {
+    border-color: #0077b5;
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(0,123,255,0.2);
+    outline: none;
+  }
+
+  button {
+    padding: 15px;
+    background: #0077b5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background: #005f8c;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .social-links {
+    text-align: center;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    animation: fadeSlide 1.5s ease forwards;
+    opacity: 0;
+  }
+
+  .social-links a {
+    font-size: 30px;
+    color: #555;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  .social-links a:hover {
+    color: #0077b5;
+    transform: scale(1.3) rotate(10deg);
+  }
+
+  @media (max-width: 600px) {
+    .contact-container {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="contact-container">
+  <header>
+    <nav>
+      <a href="{{ url_for('home') }}"><i class="fas fa-arrow-left"></i> Home</a>
+    </nav>
+  </header>
+
+  <h2>Contact Me</h2>
+  <form id="contact-form">
+    <input type="text" name="from_name" placeholder="Your Name" required>
+    <input type="email" name="from_email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://www.instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/yourwhatsappphonenumber" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("v5UvdQelahMf5JdgJ"); // Replace with your EmailJS public key
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    emailjs.sendForm("service_wbbaaj1", "template_7gdqnjp", this)
+      .then(function(response) {
+        alert("✅ Message sent successfully!");
+      }, function(error) {
+        alert("❌ Failed to send message. Please try again.");
+        console.log("FAILED...", error);
+      });
+  });
+</script>
+
+</body>
+</html>
