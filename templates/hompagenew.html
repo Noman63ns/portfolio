@@ -115,7 +115,7 @@
       background: rgba(0,0,0,0.7);
       border-radius: 15px;
       margin: 50px auto;
-      max-width: 1000px;
+      max-width: 800px;
       padding: 40px;
       animation: fadeIn 2s ease;
     }
@@ -233,77 +233,54 @@
     }
       .btn2{border-radius:50%;
       border:2px}
-    /* Responsive Design */
-@media (max-width: 1024px) {
-  nav {
-    padding: 15px 30px;
-  }
-  .hero h2 {
-    font-size: 36px;
-  }
-  .hero p {
-    font-size: 18px;
-    padding: 0 20px;
+      @media (max-width:450px;max-height:1500px) {
+  textarea {
+    font-size: 0.95rem;
   }
 }
-
-@media (max-width: 768px) {
-  nav ul {
-    display: none; /* Hide nav links for small screens */
+      @media (max-width: 768px) {
+  nav {
     flex-direction: column;
-    background: rgba(0,0,0,0.9);
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-    padding: 20px;
-    border-radius: 10px;
-  }
-
-  nav.active ul {
-    display: flex;
+    align-items: flex-start;
+    padding: 15px 20px;
   }
 
   nav h1 {
-    font-size: 20px;
+    margin-bottom: 10px;
   }
 
-  .hero h2 {
-    font-size: 28px;
-  }
-  .hero p {
-    font-size: 16px;
-  }
-
-  section {
-    padding: 60px 20px;
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
   }
 
-  .about, .skills, .projects {
-    margin: 30px auto;
-    padding: 25px;
+  nav ul li {
+    width: 100%;
   }
+
+ .navbar li {
+  list-style: none;
 }
 
-@media (max-width: 480px) {
-  .hero h2 {
-    font-size: 22px;
-  }
-  .hero p {
-    font-size: 14px;
-  }
-  .btn {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
+.navbar li a,
+.navbar li button.btn {
+  display: flex;        /* ensures all buttons behave similarly */
+  width: 100px;          /* optional: fix width to make all equal */
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #00d9ff;
+  color: #111;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-  .skills ul {
-    grid-template-columns: 1fr;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+.navbar li a:hover,
+.navbar li button.btn:hover {
+  background: #009ac7;
+  color: #fff;
+}
 }
 
   </style>
@@ -320,19 +297,13 @@
       <li><button class="btn"><a href="#skills">Skills</a></button></li>
       <li><button class="btn"><a href="#projects">Projects</a></button></li>
       <li><button class="btn"><a href="{{url_for('contact')}}">Contact</a></button></li>
-      {% if session.get('username') %}
-        <li><button class="btn">{{ session.username }}</button>
-            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
-      {% else %}
-      <a href="{{ url_for('login') }}" class="btn">Login</a></li>
-      {% endif %}
 
     </ul>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h2>Hi, I'm Nazmus Salehin Noman 👋</h2>
+    <h2>Hi, I am Nazmus Salehin Noman </h2>
     <p>A passionate developer in signal processing tools, building modern web applications, and data-driven projects with Python, Flask, and Machine Learning.</p>
     <a href="#about" class="btn">Discover More</a>
   </section>
@@ -379,12 +350,28 @@
       <div class="project-card">
         <img src="https://d2nzy1qhita6w.cloudfront.net/media/magefan_blog/data-analysis-skills-duties-responsibilities.jpeg" alt="Project 2">
         <div class="project-card-content">
-          <h3>Data Analysis Tool</h3>
+          <h3>Data Analysis App</h3>
           <p>Data cleaning, visualization, and interactive dashboards.</p>
           <a href="{{ url_for('project_details') }}" target="_blank">View Project</a>
         </div>
       </div>
       <!-- Project 3 -->
+        <div class="project-card">
+        <img src="https://cdn.soft112.com/audio-noise-reducer-denoise-ios/00/00/0H/TF/00000HTFKK/pad_screenshot_J7D4G0C0Z2.jpg" alt="Project 2">
+        <div class="project-card-content">
+          <h3>Audio Signal Denoiser</h3>
+          <p>Noise removing from audio signal through DeepFilterNet</p>
+          <a href="{{ url_for('project_details') }}" target="_blank">View Project</a>
+        </div>
+      </div>
+        <div class="project-card">
+        <img src="static/ecg.jpg" alt="Project 2">
+        <div class="project-card-content">
+          <h3>ECG Monitoring Dashboard</h3>
+          <p>Real time physiological states monitoring by ECG signal</p>
+          <a href="{{ url_for('project_details') }}" target="_blank">View Project</a>
+        </div>
+      </div>
       <div class="project-card">
         <img src="https://storage.googleapis.com/ureify-strapi-assets/resume_building_for_freshers_9bbad96764/resume_building_for_freshers_9bbad96764.webp" alt="Project 3">
         <div class="project-card-content">
@@ -411,4 +398,3 @@
   </footer>
 </body>
 </html>
-
